@@ -8,16 +8,30 @@ class Dashboard extends CI_Controller {
 		$this->load->library('template');
 	}
 	public function index(){
-		$this->template->utama('indexcp');
+		$this->template->utama('list');
 	}
 	public function login(){
-		$this->data['logins'] = $this->dashboard_qry->login();
-		if ($this->session->flashdata('berhasil_sekali') == 'berhasil') {
-			echo "selamat";
-		 }elseif ($this->session->flashdata('pengguna_takada') == 'pengguna_takadas') {
-		 	echo "pengguna_takterdaftar";
-		 }
+		$datas = $this->dashboard_qry->login();
+		if ($datas== 'adm') {
+			$this->session->set_userdata('admin', $datas);
+		}elseif ($datas == 'cust') {
+			$this->session->set_userdata('customer', $datas);
+		}
+	}
+	public function validasi(){
+		if ($this->session->userdata('customer') == 'cust') {
+			redirect('cust');
+		}elseif ($this->session->userdata('admin') == 'adm') {
+			redirect('adminco');
+		}
+	}
+	public function input_barang(){
+		$this->template->utama('input_barang');
 	}
 
+	public function keluar(){
+        $this->session->sess_destroy();
+        redirect(base_url(''));
+	}
 
 }

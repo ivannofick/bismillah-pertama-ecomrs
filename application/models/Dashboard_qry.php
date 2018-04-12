@@ -12,16 +12,18 @@ class Dashboard_qry extends CI_Model
         return $data->result_array();
     }
     public function login(){
-    	$newdata = array(
-            'username' => $this->input->post('username'),
-            'password' => $this->input->post('password')
-            );
-    	$query = $this->db->query("select * from user_datas where username = {$this->db->escape($newdata['username'])} and sandi_kata = {$this->db->escape($newdata['password'])} ");
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+    	$query = $this->db->query("select username, sandi_kata, level from user_datas where username = {$this-> db ->escape($username)} and sandi_kata = {$this-> db ->escape($password)} ");
     	$resl = $query->result_array();
-        if ($resl) {
-            return $this->session->set_flashdata('berhasil_sekali', 'berhasil');
-        }else{
-            return $this->session->set_flashdata('pengguna_takada', 'pengguna_takadas');
+        foreach ($resl as $rows) {
+            if (!empty($rows)) {
+                if ($rows['level'] == 'adm') {
+                    return $rows['level'];
+                }elseif ($rows['level'] == 'cust') {
+                    return $rows['level'];
+                }
+            }
         }
     }
 }

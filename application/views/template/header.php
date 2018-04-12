@@ -26,7 +26,59 @@
     </div>
   </div>
 </div>
-
+<?php
+if ($this->session->userdata('admin') == 'adm') {
+?>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/img/icon/ms-icon-70x70.png"> Dodolan Kaos</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav ml-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="<?php echo base_url();?>adminco">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="<?php echo base_url();?>dashboard/input_barang">Input Barang</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Kerad</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="<?php echo base_url();?>dashboard/keluar"><i class="fa fa-sign-in"></i> Logout</a>
+		      </li>
+		    </ul>
+		  </div>
+	</nav></br>
+<?php
+}elseif ($this->session->userdata('customer') == 'cust') {
+?>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/img/icon/ms-icon-70x70.png"> Dodolan Kaos</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav ml-auto">
+		      <li class="nav-item active">
+		        <a class="nav-link" href="<?php echo base_url();?>cust">Home <span class="sr-only">(current)</span></a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Oblong</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="#">Keranjang</a>
+		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link disabled" href="<?php echo base_url();?>dashboard/keluar"><i class="fa fa-sign-in"></i> Logout</a>
+		      </li>
+		    </ul>
+		  </div>
+	</nav></br>
+<?php
+}else{
+?>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <a class="navbar-brand" href="<?php echo base_url();?>"><img src="<?php echo base_url();?>assets/img/icon/ms-icon-70x70.png"> Dodolan Kaos</a>
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,3 +101,10 @@
 		    </ul>
 		  </div>
 	</nav></br>
+<?php
+}
+?>
+
+
+
+
